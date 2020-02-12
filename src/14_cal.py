@@ -31,23 +31,33 @@ import calendar
 import sys
 from datetime import datetime
 
-length = len(sys.argv)
+year = input("Enter year: ")
+month = input("Enter month: ")
 
-if length == 1:
-    month = datetime.today().month
-    year = datetime.today().year
+if (year.isdigit()) and (month == ""):
+    year = int(year)
+    month = datetime.now().month
+    y = calendar.month(year, month)
+    print(y)
 
-elif length == 2:
-    month = sys.argv[1]
-    year = datetime.today().year
+elif (year == "") and (month.isdigit()):
+    year = datetime.now().year
+    month = int(month)
+    y = calendar.month(year, month)
+    print(y)
 
-elif length == 3:
-    month = sys.argv[1]
-    year = sys.argv[2]
+elif (year.isdigit()) and (month.isdigit()):
+    year = int(year)
+    month = int(month)
+    y = calendar.month(year, month)
+    print(y)
+
+elif (year == "") and (month == ""):
+    year = datetime.now().year
+    month = datetime.now().month
+    y = calendar.month(year, month)
+    print(y)
 
 else:
-    print(f"Please enter the correct format: python3 14_cal.py [month], [year]")
+    print("Please enter the correct format in integers!")
     sys.exit()
-
-
-print(calendar.monthcalendar(year, month))
